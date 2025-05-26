@@ -10,25 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
+    <!-- Three.js for 3D animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="left">Abhinav's Portfolio</div>
-            <div class="right">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">About</a></li>
-                    <li><a href="/">Services</a></li>
-                    <li><a href="/">Projects</a></li>
-                    <li><a href="/">Contact</a></li>
-                </ul>
+<body>    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#home">Abhinav<span class="purple"> Singh</span></a>
             </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-        <section class = "firstSection">
+        <section class="firstSection" id="home">
+            <div id="bg-canvas"></div>
             <div class="leftSection">
                 Hi I am <span class="purple">Abhinav Singh</span>
                 <div>and I am a <span id="element"></span></div>
@@ -38,6 +45,160 @@
             </div>
             <div class="rightSection">
                 <img src="bg.png">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="aboutSection" id="about">
+            <div class="about-container">
+                <h1 class="section-title">About <span class="purple">Me</span></h1>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="images.jpeg" alt="Abhinav Singh">
+                    </div>
+                    <div class="about-text">
+                        <p>
+                            Hello! I'm a passionate developer with expertise in web development, 
+                            Python programming, and cutting-edge technologies like AI and Machine Learning.
+                        </p>
+                        <p>
+                            I love creating innovative solutions and bringing ideas to life through code. 
+                            With a strong foundation in both frontend and backend technologies, I enjoy 
+                            building full-stack applications that provide exceptional user experiences.
+                        </p>
+                        
+                        <h2>My Skills</h2>
+                        <div class="skills-container">
+                            <div class="skill-category">
+                                <h3>Web Development</h3>
+                                <ul>
+                                    <li>HTML5 & CSS3</li>
+                                    <li>JavaScript</li>
+                                    <li>React.js</li>
+                                    <li>Responsive Design</li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Backend Development</h3>
+                                <ul>
+                                    <li>Python</li>
+                                    <li>Django/Flask</li>
+                                    <li>Node.js</li>
+                                    <li>Database Management</li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h3>AI/ML</h3>
+                                <ul>
+                                    <li>Machine Learning</li>
+                                    <li>Deep Learning</li>
+                                    <li>Data Analysis</li>
+                                    <li>TensorFlow/PyTorch</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h2>Education</h2>
+                        <div class="education">
+                            <div class="education-item">
+                                <h3>Computer Science Engineering</h3>
+                                <p>University Name, 2021-2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section with Timeline -->
+        <section class="projectsSection" id="projects">
+            <div class="projects-container">
+                <h1 class="section-title">My <span class="purple">Projects</span></h1>
+                <div class="timeline">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Project 1 -->
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">May 2025</div>
+                            <h3>StealthOps</h3>
+                            <p>Advanced keylogger with keystroke logging, screenshot/webcam capture, audio recording, clipboard monitoring, encryption, and Telegram data transfer.</p>
+                            <div class="project-tags">
+                                <span>Telegram API</span>
+                                <span>Pynput</span>
+                                <span>Cryptography (Fernet)</span>
+                                <span>Windows API</span>
+                                <span>Multimedia capture libraries</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/ironsupr/StealthOps" target="_blank" class="project-link">View Code</a>
+                                <!-- <a href="#" class="project-link">Live Demo</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">March 2025</div>
+                            <h3>Beru AI</h3>
+                            <p>Multilingual AI assistant with STT, TTS, Groq, Cohere, Hugging Face integration, modern GUI, and voice commands.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>speech_recognition</span>
+                                <span>gTTS</span>
+                                <span>tkinter</span>
+                                <span>APIs</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/ironsupr/Beru-AI-Personal-Assiatant/" target="_blank" class="project-link">View Code</a>
+                                <!-- <a href="#" class="project-link">Live Demo</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">February 2025</div>
+                            <h3>Face Recognition Attendance System</h3>
+                            <p>Real-time face recognition system with attendance tracking saved to CSV.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>OpenCV</span>
+                                <span>face_recognition</span>
+                                <span>Tkinter</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/ironsupr/Face_Recognition_Attendance_System" target="_blank" class="project-link">View Code</a>
+                                <!-- <a href="#" class="project-link">Live Demo</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">January 2025</div>
+                            <h3>Advanced Grammar Checker</h3>
+                            <p>Desktop app using Gemini Pro for multilingual grammar/spelling checking with voice support.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>Gemini API</span>
+                                <span>speech_recognition</span>
+                                <span>Tkinter</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/ironsupr/Advanced-Grammar-Checker-with-Gemini" target="_blank" class="project-link">View Code</a>
+                                <!-- <a href="#" class="project-link">Research Paper</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -52,25 +213,57 @@
         </section> -->
     </main>
 
-    <!-- Footer Section -->
-    <footer class="footer">
+    <!-- Footer Section -->    <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2025 Abhinav Singh. All Rights Reserved.</p>
             <div class="footer-links">
-                <a href="/">About</a>
-                <a href="/">Projects</a>
-                <a href="/"">Contact</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </footer>
 
     
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="animations.js"></script>
 
     <script>
+        // Typing animation
         var typed = new Typed('#element', {
           strings: ['Web Developer', 'Python Developer', 'AI Developer', 'ML Developer'],
           typeSpeed: 50,
+        });
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Toggle mobile menu
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
         });
       </script>
 </body>
