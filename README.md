@@ -5,18 +5,21 @@ A modern, responsive portfolio website built with HTML5, CSS3, and JavaScript fe
 ## 🚀 Features
 
 ### ✨ **Modern Design**
+
 - Responsive layout that works on all devices
 - Glassmorphism effects and gradient backgrounds
 - Smooth animations and transitions
 - Professional color scheme with purple accents
 
 ### 🎯 **Interactive Elements**
+
 - Custom loading screen with progress animation
 - 3D background animations using Three.js
 - Smooth scrolling navigation
 - Hover effects and interactive buttons
 
 ### 📱 **Sections**
+
 - **Hero Section**: Eye-catching introduction with call-to-action
 - **About**: Personal information and skills overview
 - **Projects Timeline**: Showcase of development projects
@@ -24,6 +27,7 @@ A modern, responsive portfolio website built with HTML5, CSS3, and JavaScript fe
 - **Footer**: Enhanced footer with social links and resources
 
 ### 🛠️ **Technical Features**
+
 - **EmailJS Integration**: Working contact form
 - **Custom 404 Page**: Branded error page with navigation
 - **Loading Screen**: Animated loading experience
@@ -55,6 +59,7 @@ Portfolio/
 The portfolio is automatically deployed to GitHub Pages using GitHub Actions. Any push to the `main` branch triggers a new deployment.
 
 ### Manual Deployment
+
 1. Fork this repository
 2. Enable GitHub Pages in repository settings
 3. Set source to "GitHub Actions"
@@ -63,12 +68,14 @@ The portfolio is automatically deployed to GitHub Pages using GitHub Actions. An
 ## 🔧 Local Development
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/ironsupr/Portfolio.git
    cd Portfolio
    ```
 
 2. Start a local server:
+
    ```bash
    python -m http.server 8000
    ```
@@ -90,15 +97,18 @@ The contact form uses EmailJS for functionality. To set up your own:
 ## 🎨 Customization
 
 ### Colors
+
 The main color scheme uses CSS custom properties. Update the purple accents by modifying the gradient values in `style.css`.
 
 ### Content
+
 - Update personal information in `index.html`
 - Replace `bg.png` and `images.jpeg` with your own images
 - Update `RESUME_O.pdf` with your resume
 - Modify social media links in the contact section
 
 ### Animations
+
 - 3D background animations are in `animations.js`
 - CSS animations are defined in `style.css`
 - Loading screen animations can be customized in the loading section
@@ -117,6 +127,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👨‍💻 Author
 
 **Abhinav Singh**
+
 - GitHub: [@ironsupr](https://github.com/ironsupr)
 - LinkedIn: [Connect with me](https://linkedin.com/in/your-profile)
 
