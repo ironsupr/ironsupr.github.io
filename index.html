@@ -15,7 +15,41 @@
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
-<body>    <header>
+<body>
+    <!-- Custom Loading Page -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <h1>Abhinav<span class="purple"> Singh</span></h1>
+                <p>Loading Portfolio...</p>
+            </div>
+            <div class="loading-animation">
+                <div class="loading-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+        <div class="loading-background-animation">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <header>
         <nav class="navbar">
             <div class="logo">
                 <a href="#home">Abhinav<span class="purple"> Singh</span></a>
@@ -585,8 +619,7 @@
                     messageDiv.remove();
                 }, 5000);
             }
-            
-            // Smooth scrolling for footer links and back-to-top
+              // Smooth scrolling for footer links and back-to-top
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -599,6 +632,42 @@
                     }
                 });
             });
+
+            // Loading Screen Functionality
+            function startLoading() {
+                const loadingScreen = document.getElementById('loading-screen');
+                const progressFill = document.querySelector('.progress-fill');
+                const progressText = document.querySelector('.progress-text');
+                
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15 + 5; // Random increment between 5-20
+                    
+                    if (progress >= 100) {
+                        progress = 100;
+                        progressFill.style.width = '100%';
+                        progressText.textContent = '100%';
+                        
+                        // Wait a moment then fade out
+                        setTimeout(() => {
+                            loadingScreen.classList.add('fade-out');
+                            
+                            // Remove loading screen completely after fade
+                            setTimeout(() => {
+                                loadingScreen.style.display = 'none';
+                            }, 800);
+                        }, 500);
+                        
+                        clearInterval(interval);
+                    } else {
+                        progressFill.style.width = progress + '%';
+                        progressText.textContent = Math.floor(progress) + '%';
+                    }
+                }, 100);
+            }
+
+            // Start loading animation when page loads
+            startLoading();
         });
       </script>
 </body>

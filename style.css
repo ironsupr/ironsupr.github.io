@@ -1244,3 +1244,230 @@ nav ul li{
         gap: 12px;
     }
 }
+
+/* Custom Loading Page Styles */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgb(0, 0, 33) 0%, rgb(11, 11, 48) 50%, rgb(2, 2, 40) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.loading-logo h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: white;
+    animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+.loading-logo p {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 3rem;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+.loading-animation {
+    margin-bottom: 3rem;
+}
+
+.loading-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, blueviolet, rgb(121, 28, 207));
+    animation: dotBounce 1.4s ease-in-out infinite both;
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+.dot:nth-child(3) { animation-delay: 0s; }
+.dot:nth-child(4) { animation-delay: 0.16s; }
+
+.loading-progress {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, blueviolet, rgb(121, 28, 207), blueviolet);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s ease;
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+.progress-text {
+    color: #aaa;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.loading-background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.floating-shapes {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(121, 28, 207, 0.2));
+    animation: floatShape 6s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -2s;
+}
+
+.shape-3 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -4s;
+}
+
+.shape-4 {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    right: 30%;
+    animation-delay: -1s;
+}
+
+.shape-5 {
+    width: 70px;
+    height: 70px;
+    bottom: 40%;
+    right: 20%;
+    animation-delay: -3s;
+}
+
+/* Loading Animations */
+@keyframes logoGlow {
+    0% { text-shadow: 0 0 20px rgba(138, 43, 226, 0.5); }
+    100% { text-shadow: 0 0 30px rgba(138, 43, 226, 0.8); }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+@keyframes dotBounce {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes progressShine {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+@keyframes floatShape {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.3;
+    }
+    33% {
+        transform: translateY(-20px) rotate(120deg);
+        opacity: 0.6;
+    }
+    66% {
+        transform: translateY(10px) rotate(240deg);
+        opacity: 0.4;
+    }
+}
+
+/* Responsive Loading Screen */
+@media (max-width: 768px) {
+    .loading-logo h1 {
+        font-size: 2.5rem;
+    }
+    
+    .loading-logo p {
+        font-size: 1rem;
+    }
+    
+    .loading-progress {
+        max-width: 250px;
+    }
+    
+    .shape {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .loading-logo h1 {
+        font-size: 2rem;
+    }
+    
+    .loading-progress {
+        max-width: 200px;
+    }
+}
