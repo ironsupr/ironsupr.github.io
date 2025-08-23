@@ -28,17 +28,14 @@ jobs:
       with:
         node-version: '18'
         
-    - name: Inject production secrets into config.js
+    - name: Set production environment
       run: |
-        # Create a temporary script to safely replace the config values
-        cat > inject_config.js << 'EOF'
+        # Create a temporary script to set production environment
+        cat > set_production.js << 'EOF'
         const fs = require('fs');
         
         // Read the config file
         let configContent = fs.readFileSync('config.js', 'utf8');
-        
-        // Replace the empty values with actual secrets
-        configContent = configContent.replace(/GEMINI_API_KEY: '',/, `GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}',`);
         
         // Set production environment
         configContent = configContent.replace(/NODE_ENV: 'development',/, `NODE_ENV: 'production',`);
@@ -47,30 +44,27 @@ jobs:
         // Write the updated config back
         fs.writeFileSync('config.js', configContent);
         
-        console.log('✅ Configuration updated for production');
+        console.log('✅ Production environment configured');
         EOF
         
-        # Run the injection script
-        node inject_config.js
-        rm inject_config.js
+        # Run the production setup script
+        node set_production.js
+        rm set_production.js
         
-    - name: Verify configuration injection
+    - name: Verify production configuration
       run: |
-        echo "Checking if secrets were properly injected..."
-        
-        # Check if the config contains the actual secrets (not empty)
-        if grep -q "GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}'" config.js; then
-          echo "✅ GEMINI_API_KEY injected successfully"
-        else
-          echo "❌ GEMINI_API_KEY injection failed"
-          echo "Current GEMINI_API_KEY line:"
-          grep "GEMINI_API_KEY:" config.js || echo "Line not found"
-        fi
+        echo "Checking production configuration..."
         
         if grep -q "NODE_ENV: 'production'" config.js; then
           echo "✅ Production environment set"
         else
           echo "❌ Production environment not set"
+        fi
+        
+        if grep -q "DEBUG: false" config.js; then
+          echo "✅ Debug mode disabled"
+        else
+          echo "❌ Debug mode still enabled"
         fi
         
     - name: Setup Pages

@@ -17,12 +17,6 @@ class EnvironmentConfig {
         // 3. Or set them manually here (NOT recommended for production)
         
         this.config = {
-            // WARNING: Do not put real API keys here in production!
-            // This is just for development/demo purposes
-            GEMINI_API_KEY: '', // Set your API key here for testing
-            GEMINI_MODEL: 'gemini-2.5-flash-preview-05-20',
-            GEMINI_API_BASE_URL: 'https://generativelanguage.googleapis.com/v1beta/models',
-            
             // Contact information
             CONTACT_EMAIL: 'abhinavsingh25001@gmail.com',
             LINKEDIN_URL: 'https://www.linkedin.com/in/abhinav-singh-aslcj3000',
@@ -89,14 +83,6 @@ class EnvironmentConfig {
         }
     }
 
-    getGeminiApiUrl() {
-        const baseUrl = this.get('GEMINI_API_BASE_URL');
-        const model = this.get('GEMINI_MODEL');
-        const apiKey = this.get('GEMINI_API_KEY');
-        
-        return `${baseUrl}/${model}:generateContent?key=${apiKey}`;
-    }
-
     isProduction() {
         return this.get('NODE_ENV') === 'production';
     }
@@ -107,15 +93,14 @@ class EnvironmentConfig {
 
     // Check if configuration is complete
     isConfigured() {
-        const geminiKey = this.get('GEMINI_API_KEY');
-        return geminiKey && geminiKey !== '';
+        // For now, consider configuration always complete since no API keys are required
+        return true;
     }
 
     // Get missing configuration items
     getMissingConfig() {
-        const missing = [];
-        if (!this.get('GEMINI_API_KEY') || this.get('GEMINI_API_KEY') === '') missing.push('Gemini API Key');
-        return missing;
+        // No required configuration items anymore
+        return [];
     }
 
     // Show configuration help
@@ -123,7 +108,8 @@ class EnvironmentConfig {
         if (!this.isConfigured()) {
             console.warn('⚠️ Portfolio not fully configured!');
             console.log('Missing:', this.getMissingConfig());
-            console.log('🔧 Run setup.html to configure or check GITHUB_SETUP.md for deployment instructions');
+        } else {
+            console.log('✅ Portfolio configuration complete!');
         }
     }
 }
@@ -142,8 +128,7 @@ if (typeof window !== 'undefined') {
             isConfigured: envConfig.isConfigured(),
             missing: envConfig.getMissingConfig(),
             hostname: window.location.hostname,
-            environment: envConfig.get('NODE_ENV'),
-            hasGeminiKey: !!envConfig.get('GEMINI_API_KEY')
+            environment: envConfig.get('NODE_ENV')
         });
         
         // Show configuration help if needed
