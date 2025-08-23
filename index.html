@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinav Singh - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Use a CSS custom property for the scrollbar to ensure cross-browser compatibility */
+        :root {
+            --scroll-behavior: smooth;
+        }
+        html {
+            scroll-behavior: var(--scroll-behavior);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e2e8f0;
+        }
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+        }
+        .typing-cursor {
+            border-right: .15em solid #6366f1;
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #6366f1; }
+        }
+        /* Reveal on scroll animation */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: 1s all ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-glass {
+             background: rgba(10, 10, 10, 0.6);
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.2), 0 10px 10px -5px rgba(99, 102, 241, 0.1);
+        }
+        .form-input {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #6366f1;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-white font-bold text-xl tracking-tighter">Abhinav Singh</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#projects" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#certifications" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Certifications</a>
+                        <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section flex items-center justify-center text-center">
+        <canvas id="background-animation" class="background-animation"></canvas>
+        <div class="content-container p-4">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter mb-4">
+                Abhinav Singh
+            </h1>
+            <p class="text-xl md:text-2xl text-indigo-400 font-medium mb-8">
+                <span id="typing-effect"></span><span class="typing-cursor"></span>
+            </p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/your-profile" target="_blank" class="text-slate-400 hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="https://github.com/your-username" target="_blank" class="text-slate-400 hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="mailto:abhinavsingh25001@gmail.com" class="text-slate-400 hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Skills Section -->
+    <section id="about" class="py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-white tracking-tighter sm:text-5xl">About Me</h2>
+                    <p class="mt-4 text-xl text-slate-400">A brief introduction to my passion and skills.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="text-lg text-slate-300 space-y-6">
+                        <p>
+                            I am a passionate Computer Science student with a strong foundation in AI and Machine Learning. My journey in technology is driven by a desire to build intelligent systems that solve real-world problems.
+                        </p>
+                        <p>
+                            From developing full-stack applications to engineering complex machine learning models, I thrive on challenges and am constantly exploring new technologies to expand my skill set. I'm particularly interested in Natural Language Processing and Computer Vision.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-6">My Tech Stack</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                            <!-- Skill Items -->
+                            <div class="flex flex-col items-center bg-gray-900 p-4 rounded-lg hover:bg-indigo-900/50 transition duration-300"><img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python" class="h-12 w-12 mb-2"><span class="text-sm font-medium">Python</span></div>
+                            <div class="flex flex-col items-center bg-gray-900 p-4 rounded-lg hover:bg-indigo-900/50 transition duration-300"><img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="TensorFlow" class="h-12 w-12 mb-2"><span class="text-sm font-medium">TensorFlow</span></div>
+                            <div class="flex flex-col items-center bg-gray-900 p-4 rounded-lg hover:bg-indigo-900/50 transition duration-300"><img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" alt="PyTorch" class="h-12 w-12 mb-2"><span class="text-sm font-medium">PyTorch</span></div>
+                            <div class="flex flex-col items-center bg-gray-900 p-4 rounded-lg hover:bg-indigo-900/50 transition duration-300"><img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" alt="React" class="h-12 w-12 mb-2"><span class="text-sm font-medium">React</span></div>
+                            <div class="flex flex-col items-center bg-gray-900 p-4 rounded-lg hover:bg-indigo-900/50 transition duration-300"><img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" alt="Docker" class="h-12 w-12 mb-2"><span class="text-sm font-medium">Docker</span></div>
+                            <div class="flex flex-col items-center bg-gray-900 p-4 rounded-lg hover:bg-indigo-900/50 transition duration-300"><img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="GCP" class="h-12 w-12 mb-2"><span class="text-sm font-medium">GCP</span></div>
+                            <div class="flex flex-col items-center bg-gray-900 p-4 rounded-lg hover:bg-indigo-900/50 transition duration-300"><img src="https://cdn.svgporn.com/logos/fastapi.svg" alt="FastAPI" class="h-12 w-12 mb-2"><span class="text-sm font-medium">FastAPI</span></div>
+                            <div class="flex flex-col items-center bg-gray-900 p-4 rounded-lg hover:bg-indigo-900/50 transition duration-300"><img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" class="h-12 w-12 mb-2"><span class="text-sm font-medium">Git</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 lg:py-32 bg-[#101010]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-white tracking-tighter sm:text-5xl">My Projects</h2>
+                    <p class="mt-4 text-xl text-slate-400">A selection of my favorite work.</p>
+                    <div class="mt-8">
+                        <button id="generate-idea-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:ring-offset-gray-900">
+                            ✨ Generate a Project Idea
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=DocaCast" alt="Project 1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">DocaCast</h3>
+                            <p class="text-slate-400 mb-4 text-sm">Full-stack app that transforms PDFs into multi-speaker podcasts using Gemini AI and Adobe PDF API.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">React</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">FastAPI</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Gemini AI</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Docker</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/DocaCast" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                                <a href="#" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=EduGenie+Platform" alt="Project 2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">EduGenie AI Platform</h3>
+                            <p class="text-slate-400 mb-4 text-sm">AI platform that automates course creation from YouTube videos and syllabi, reducing setup time by 90%.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">React</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Gemini AI</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Firebase</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/EduGenie" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                                <a href="https://edugenie-pi.vercel.app/" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=Beru+AI+Assistant" alt="Project 3" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Beru AI Assistant</h3>
+                            <p class="text-slate-400 mb-4 text-sm">High-performance, multi-modal AI assistant with advanced STT and NLP, cutting query latency by 30%.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">NLP</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">PyQt5</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Hugging Face</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/Beru-AI-Personal-Assiatant" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Project Card 4 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=StealthOps" alt="StealthOps" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">StealthOps</h3>
+                            <p class="text-slate-400 mb-4 text-sm">A secure keylogger that captures, encrypts, and transmits system data via Telegram with real-time monitoring.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Cryptography</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/StealthOps" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 5 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=Presensee" alt="Presensee" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Presensee</h3>
+                            <p class="text-slate-400 mb-4 text-sm">A face recognition-based attendance system that trains a model and marks attendance in real-time.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">OpenCV</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/Face_Recognition_Attendance_System" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 6 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=Grammar+Checker" alt="Advanced Grammer Checker" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Advanced Grammar Checker</h3>
+                            <p class="text-slate-400 mb-4 text-sm">A desktop application for advanced grammar and spelling checks using Google's Gemini Pro model.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Gemini AI</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/Advanced-Grammar-Checker-with-Gemini" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Project Card 7 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=Podcast+Transcriber" alt="Podcast Transcriber" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Podcast Transcriber</h3>
+                            <p class="text-slate-400 mb-4 text-sm">A tool that transcribes podcast audio to text using OpenAI's Whisper model for accurate speech recognition.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Whisper</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/Podcast-Transcription-using-Wisper" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 8 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=Escape+Room" alt="Escape Room" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Escape Room</h3>
+                            <p class="text-slate-400 mb-4 text-sm">An interactive, GUI-based Escape Room game in MATLAB featuring puzzles, a countdown timer, and progress tracking.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">MATLAB</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">GUI</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/Escape-Room" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 9 -->
+                    <div class="project-card bg-gray-900 rounded-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/0a0a0a/e2e8f0?text=Emotion+Detector" alt="Emotion Detector" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Emotion Detector</h3>
+                            <p class="text-slate-400 mb-4 text-sm">A CNN-based system to detect 7 emotions from real-time webcam feeds using Haar Cascade for face detection.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">CNN</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">OpenCV</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/ironsupr/Emotion-Detector" target="_blank" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-white tracking-tighter sm:text-5xl">Certifications</h2>
+                    <p class="mt-4 text-xl text-slate-400">My professional credentials and learning achievements.</p>
+                </div>
+                <div class="max-w-3xl mx-auto relative">
+                    <!-- Vertical Line -->
+                    <div class="absolute left-5 md:left-1/2 w-0.5 h-full bg-slate-700"></div>
+                    <div class="space-y-12">
+                        
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:flex-row-reverse md:space-x-reverse md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+                                        <h3 class="font-bold text-white">Agile Methodologies</h3>
+                                        <p class="text-sm text-slate-400">IBM - Issued Apr 2025</p>
+                                        <a href="https://courses.ibmcep.cognitiveclass.ai/certificates/aabd828c23d1459db8213c47bed9fb2e" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md md:ml-auto md:text-right">
+                                        <h3 class="font-bold text-white">DevOps Fundamentals</h3>
+                                        <p class="text-sm text-slate-400">IBM - Issued Apr 2025</p>
+                                        <a href="https://courses.ibmcep.cognitiveclass.ai/certificates/35752a7266944f52985cc7c6182d2548" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:flex-row-reverse md:space-x-reverse md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+                                        <h3 class="font-bold text-white">MongoDB Developer’s Toolkit</h3>
+                                        <p class="text-sm text-slate-400">GeeksforGeeks - Issued Jan 2025</p>
+                                        <a href="https://www.geeksforgeeks.org/certificate/2fb56964f30d64c48024c4f99b56b9b0" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md md:ml-auto md:text-right">
+                                        <h3 class="font-bold text-white">Complete Ethical Hacking Bootcamp</h3>
+                                        <p class="text-sm text-slate-400">Udemy - Issued Dec 2024</p>
+                                        <a href="https://www.udemy.com/certificate/UC-5a3b3fb6-6b0e-4b7a-a6e5-7fea86b31e01/" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:flex-row-reverse md:space-x-reverse md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+                                        <h3 class="font-bold text-white">CentOS Linux and Ubuntu Linux</h3>
+                                        <p class="text-sm text-slate-400">Udemy - Issued Jul 2024</p>
+                                        <a href="https://www.udemy.com/certificate/UC-112504c4-ddde-4360-90e9-3e5ac62c6cf6/" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                         <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md md:ml-auto md:text-right">
+                                        <h3 class="font-bold text-white">Machine Learning Specialization</h3>
+                                        <p class="text-sm text-slate-400">DeepLearning.AI & Stanford University - Jun 2024</p>
+                                        <a href="https://www.coursera.org/account/accomplishments/specialization/862PDNBW9B97" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:flex-row-reverse md:space-x-reverse md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+                                        <h3 class="font-bold text-white">Cloud Computing</h3>
+                                        <p class="text-sm text-slate-400">NPTEL - Issued May 2024</p>
+                                        <a href="https://nptel.ac.in/noc/E_Certificate/NPTEL24CS17S45760070030374232" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md md:ml-auto md:text-right">
+                                        <h3 class="font-bold text-white">The Bits and Bytes of Computer Networking</h3>
+                                        <p class="text-sm text-slate-400">Google - Issued Dec 2023</p>
+                                        <a href="https://www.coursera.org/account/accomplishments/verify/RY5RTFNFEA2W" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:flex-row-reverse md:space-x-reverse md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+                                        <h3 class="font-bold text-white">Ask Questions to Make Data-Driven Decisions</h3>
+                                        <p class="text-sm text-slate-400">Google - Issued Jul 2023</p>
+                                        <a href="https://www.coursera.org/account/accomplishments/verify/CTTZT244G5C3" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md md:ml-auto md:text-right">
+                                        <h3 class="font-bold text-white">Foundations: Data, Data, Everywhere</h3>
+                                        <p class="text-sm text-slate-400">Google - Issued Jun 2023</p>
+                                        <a href="https://www.coursera.org/account/accomplishments/verify/UACVL458C6K5" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:flex-row-reverse md:space-x-reverse md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+                                        <h3 class="font-bold text-white">Version Control</h3>
+                                        <p class="text-sm text-slate-400">Meta - Issued Jun 2023</p>
+                                        <a href="https://www.coursera.org/account/accomplishments/verify/USGRW4PERAVC" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md md:ml-auto md:text-right">
+                                        <h3 class="font-bold text-white">Introduction to Android Mobile Application Development</h3>
+                                        <p class="text-sm text-slate-400">Meta - Issued Apr 2023</p>
+                                        <a href="https://www.coursera.org/account/accomplishments/verify/FENXJ28FA8AF" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="relative">
+                            <div class="md:flex items-center md:flex-row-reverse md:space-x-reverse md:space-x-8">
+                                <div class="w-full md:w-1/2">
+                                    <div class="bg-gray-900 p-4 rounded-lg shadow-md">
+                                        <h3 class="font-bold text-white">How to Speak So People Want to Listen</h3>
+                                        <p class="text-sm text-slate-400">LinkedIn - Issued Oct 2022</p>
+                                        <a href="https://www.linkedin.com/in/abhinav-singh-aslcj3000/details/certifications/1703425991953/single-media-viewer/?type=DOCUMENT&profileId=ACoAAEbQUpEBl3VHW1bsQMW0SGbc1Jg1jPcnNwM" target="_blank" class="text-xs text-indigo-400 hover:underline mt-1 inline-block">View Credential</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 -mt-3 left-5 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-slate-800"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 lg:py-32 bg-[#101010]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-4xl font-black text-white tracking-tighter sm:text-5xl">Get In Touch</h2>
+                    <p class="mt-4 text-xl text-slate-400">Have a question or want to work together? Feel free to reach out.</p>
+                </div>
+                <div class="mt-12 max-w-xl mx-auto">
+                    <form action="#" method="POST">
+                        <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                            <div>
+                                <label for="first-name" class="block text-sm font-medium text-slate-300">First name</label>
+                                <div class="mt-1">
+                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="last-name" class="block text-sm font-medium text-slate-300">Last name</label>
+                                <div class="mt-1">
+                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white">
+                                </div>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="email" class="block text-sm font-medium text-slate-300">Email</label>
+                                <div class="mt-1">
+                                    <input id="email" name="email" type="email" autocomplete="email" class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white">
+                                </div>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="message" class="block text-sm font-medium text-slate-300">Message</label>
+                                <div class="mt-1">
+                                    <textarea id="message" name="message" rows="4" class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center space-x-6">
+                 <a href="https://www.linkedin.com/in/your-profile" target="_blank" class="text-slate-400 hover:text-white transition duration-300">
+                    <span class="sr-only">LinkedIn</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="https://github.com/your-username" target="_blank" class="text-slate-400 hover:text-white transition duration-300">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                </a>
+            </div>
+            <p class="mt-8 text-center text-base text-slate-400">&copy; 2024 Abhinav Singh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Gemini Project Idea Modal -->
+    <div id="gemini-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-gray-900 rounded-lg shadow-xl w-full max-w-2xl p-6 relative transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-2xl font-bold text-white mb-4">✨ AI-Generated Project Idea</h3>
+            <div id="idea-loader" class="flex justify-center items-center h-48">
+                <div class="loader"></div>
+            </div>
+            <div id="idea-content" class="text-slate-300 space-y-4 hidden">
+                <!-- Content will be injected here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Typing effect script
+        const words = ["AI & Machine Learning Enthusiast", "Full-Stack Developer", "Creative Problem Solver"];
+        let i = 0;
+        let j = 0;
+        let currentWord = "";
+        let isDeleting = false;
+        const typingEffectElement = document.getElementById('typing-effect');
+
+        function type() {
+            currentWord = words[i];
+            if (isDeleting) {
+                typingEffectElement.textContent = currentWord.substring(0, j - 1);
+                j--;
+                if (j == 0) {
+                    isDeleting = false;
+                    i++;
+                    if (i == words.length) {
+                        i = 0;
+                    }
+                }
+            } else {
+                typingEffectElement.textContent = currentWord.substring(0, j + 1);
+                j++;
+                if (j == currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000); // Pause at end of word
+                    return;
+                }
+            }
+            setTimeout(type, isDeleting ? 50 : 150);
+        }
+        type();
+
+        // Animated background script
+        const canvas = document.getElementById('background-animation');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        const mouse = {
+            x: null,
+            y: null,
+            radius: (canvas.height / 120) * (canvas.width / 120)
+        }
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(165, 180, 252, 0.5)';
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius + this.size) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                        this.x += 5;
+                    }
+                    if (mouse.x > this.x && this.x > this.size * 10) {
+                        this.x -= 5;
+                    }
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                        this.y += 5;
+                    }
+                    if (mouse.y > this.y && this.y > this.size * 10) {
+                        this.y -= 5;
+                    }
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = '#a5b4fc';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = 'rgba(199, 210, 254,' + opacityValue + ')';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        window.addEventListener('resize', function(){
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            mouse.radius = ((canvas.height/120) * (canvas.height/120));
+            init();
+        });
+
+        window.addEventListener('mouseout', function(){
+            mouse.x = undefined;
+            mouse.y = undefined;
+        })
+
+        init();
+        animate();
+
+        // Reveal on scroll script
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // To check the scroll position on page load
+        reveal();
+        
+        // --- Gemini API Integration for Project Idea Generation ---
+
+        const generateBtn = document.getElementById('generate-idea-btn');
+        const modal = document.getElementById('gemini-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const ideaLoader = document.getElementById('idea-loader');
+        const ideaContent = document.getElementById('idea-content');
+        
+        // Function to open the modal
+        const openModal = () => {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        };
+
+        // Function to close the modal
+        const closeModal = () => {
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        };
+
+        generateBtn.addEventListener('click', () => {
+            openModal();
+            ideaLoader.classList.remove('hidden');
+            ideaContent.classList.add('hidden');
+            ideaContent.innerHTML = '';
+            callGeminiApi();
+        });
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Function to call the Gemini API
+        async function callGeminiApi() {
+            const apiKey = ""; // API key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const prompt = `Generate a novel and impressive project idea for a computer science student's portfolio. The student is skilled in AI, Machine Learning, and Full-Stack Development.
+            
+            Provide the response in the following format, using markdown for formatting:
+            
+            **Project Title:** [A catchy and descriptive title]
+            
+            **Description:** [A concise, one-paragraph description of the project.]
+            
+            **Key Technologies:** [A comma-separated list of relevant technologies, e.g., Python, React, TensorFlow, Docker.]`;
+
+            const payload = {
+                contents: [{
+                    parts: [{
+                        text: prompt
+                    }]
+                }]
+            };
+
+            let response;
+            let retries = 3;
+            let delay = 1000;
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            
+                            const text = result.candidates[0].content.parts[0].text;
+                            displayIdea(text);
+                        } else {
+                           throw new Error('Invalid response structure from API');
+                        }
+                        return; // Exit after successful call
+                    } else if (response.status === 429) { // Handle throttling
+                        console.warn(`API request throttled. Retrying in ${delay / 1000}s...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2; // Exponential backoff
+                    } else {
+                        throw new Error(`API request failed with status: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    if (i === retries - 1) { // If it's the last retry
+                         displayError('Failed to generate an idea after multiple attempts. Please try again later.');
+                    }
+                }
+            }
+        }
+
+        // Function to display the generated idea
+        function displayIdea(text) {
+            // Simple markdown to HTML conversion
+            const htmlContent = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-indigo-400">$1</strong>') // Bold
+                .replace(/\n/g, '<br>'); // Newlines
+            
+            ideaContent.innerHTML = htmlContent;
+            ideaLoader.classList.add('hidden');
+            ideaContent.classList.remove('hidden');
+        }
+
+        // Function to display an error message
+        function displayError(message) {
+            ideaContent.innerHTML = `<p class="text-red-400">${message}</p>`;
+            ideaLoader.classList.add('hidden');
+            ideaContent.classList.remove('hidden');
+        }
+
+    </script>
+
+</body>
+</html>
