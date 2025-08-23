@@ -1,0 +1,31 @@
+# Environment variables (if any)
+.env*
+config.prod.js
+
+# Dependencies
+node_modules/
+
+# IDE/Editor files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+
+# API keys and secrets (backup safety)
+*key*
+*secret*
+*token*
+*.pem
+
+# Temporary files
+.tmp/
+temp/

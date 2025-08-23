@@ -1,0 +1,126 @@
+name: Deploy Portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Create environment configuration
+      run: |
+        # Create a production config file with environment variables
+        cat > config.prod.js << 'EOF'
+        // Production Environment Configuration
+        // This file is generated during build with GitHub Secrets
+        
+        class EnvironmentConfig {
+            constructor() {
+                this.config = {};
+                this.loadConfig();
+            }
+
+            loadConfig() {
+                // Production configuration loaded from GitHub Secrets
+                this.config = {
+                    GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}',
+                    GEMINI_MODEL: '${{ vars.GEMINI_MODEL || 'gemini-2.5-flash-preview-05-20' }}',
+                    GEMINI_API_BASE_URL: '${{ vars.GEMINI_API_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta/models' }}',
+                    
+                    // Email configuration
+                    EMAILJS_SERVICE_ID: '${{ secrets.EMAILJS_SERVICE_ID }}',
+                    EMAILJS_TEMPLATE_ID: '${{ secrets.EMAILJS_TEMPLATE_ID }}',
+                    EMAILJS_PUBLIC_KEY: '${{ secrets.EMAILJS_PUBLIC_KEY }}',
+                    
+                    // Contact information
+                    CONTACT_EMAIL: '${{ vars.CONTACT_EMAIL || 'abhinavsingh25001@gmail.com' }}',
+                    LINKEDIN_URL: '${{ vars.LINKEDIN_URL || 'https://www.linkedin.com/in/abhinav-singh-aslcj3000' }}',
+                    GITHUB_URL: '${{ vars.GITHUB_URL || 'https://github.com/ironsupr' }}',
+                    
+                    // Production settings
+                    NODE_ENV: 'production',
+                    DEBUG: false
+                };
+            }
+
+            get(key) {
+                return this.config[key];
+            }
+
+            getGeminiApiUrl() {
+                const baseUrl = this.get('GEMINI_API_BASE_URL');
+                const model = this.get('GEMINI_MODEL');
+                const apiKey = this.get('GEMINI_API_KEY');
+                
+                return `${baseUrl}/${model}:generateContent?key=${apiKey}`;
+            }
+
+            isProduction() {
+                return this.get('NODE_ENV') === 'production';
+            }
+
+            isDebugMode() {
+                return this.get('DEBUG');
+            }
+        }
+
+        // Export for use in other files
+        const envConfig = new EnvironmentConfig();
+
+        // For browser environments
+        if (typeof window !== 'undefined') {
+            window.envConfig = envConfig;
+        }
+        EOF
+        
+    - name: Replace config.js with production version
+      run: |
+        cp config.prod.js config.js
+        rm config.prod.js
+        
+    - name: Update HTML to use production config
+      run: |
+        # Remove development-specific scripts and comments
+        sed -i 's/<!-- Environment Configuration -->/<!-- Production Environment Configuration -->/' index.html
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
