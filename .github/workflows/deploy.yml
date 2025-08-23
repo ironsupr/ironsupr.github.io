@@ -39,9 +39,6 @@ jobs:
         
         // Replace the empty values with actual secrets
         configContent = configContent.replace(/GEMINI_API_KEY: '',/, `GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}',`);
-        configContent = configContent.replace(/EMAILJS_SERVICE_ID: '',/, `EMAILJS_SERVICE_ID: '${{ secrets.EMAILJS_SERVICE_ID }}',`);
-        configContent = configContent.replace(/EMAILJS_TEMPLATE_ID: '',/, `EMAILJS_TEMPLATE_ID: '${{ secrets.EMAILJS_TEMPLATE_ID }}',`);
-        configContent = configContent.replace(/EMAILJS_PUBLIC_KEY: '',/, `EMAILJS_PUBLIC_KEY: '${{ secrets.EMAILJS_PUBLIC_KEY }}',`);
         
         // Set production environment
         configContent = configContent.replace(/NODE_ENV: 'development',/, `NODE_ENV: 'production',`);

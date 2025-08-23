@@ -320,7 +320,7 @@
                         <a href="#about" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">About</a>
                         <a href="#projects" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Projects</a>
                         <a href="#certifications" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Certifications</a>
-                        <a href="#contact" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Contact</a>
+                        <a href="#technologies" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Technologies</a>
                     </div>
                 </div>
 
@@ -343,7 +343,7 @@
                     <a href="#about" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
                     <a href="#projects" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
                     <a href="#certifications" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Certifications</a>
-                    <a href="#contact" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                    <a href="#technologies" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Technologies</a>
                 </div>
             </div>
         </div>
@@ -370,10 +370,10 @@
                 </p>
             </div>
             <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
-                <a href="#contact" class="btn-primary inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300">
-                    Get In Touch
+                <a href="#projects" class="btn-primary inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300">
+                    View My Work
                     <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m0 0l7-7m7 7H3"></path>
                     </svg>
                 </a>
                 <a href="#" download class="inline-flex items-center px-8 py-3 border-2 border-indigo-500 text-base font-medium rounded-md text-indigo-400 hover:bg-indigo-500 hover:text-white transition-all duration-300">
@@ -844,76 +844,92 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 lg:py-32 bg-[#101010]">
+    <!-- Technologies & Tools Section -->
+    <section id="technologies" class="py-20 lg:py-32 bg-[#101010]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="reveal">
                 <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-4xl font-black text-white tracking-tighter sm:text-5xl">Get In Touch</h2>
-                    <p class="mt-4 text-xl text-slate-400">Have a question or want to work together? Feel free to reach out.</p>
+                    <h2 class="text-4xl font-black text-white tracking-tighter sm:text-5xl">Technologies & Tools</h2>
+                    <p class="mt-4 text-xl text-slate-400">My technical arsenal for building modern applications</p>
                 </div>
-                <div class="mt-12 max-w-xl mx-auto">
-                    <form id="contact-form" action="#" method="POST" novalidate>
-                        <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-                            <div>
-                                <label for="first-name" class="block text-sm font-medium text-slate-300">First name *</label>
-                                <div class="mt-1 relative">
-                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" required 
-                                           class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white" 
-                                           placeholder="Enter your first name">
-                                    <div class="invalid-feedback text-red-400 text-sm mt-1 hidden"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="last-name" class="block text-sm font-medium text-slate-300">Last name *</label>
-                                <div class="mt-1 relative">
-                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" required 
-                                           class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white" 
-                                           placeholder="Enter your last name">
-                                    <div class="invalid-feedback text-red-400 text-sm mt-1 hidden"></div>
-                                </div>
-                            </div>
-                            <div class="sm:col-span-2">
-                                <label for="email" class="block text-sm font-medium text-slate-300">Email *</label>
-                                <div class="mt-1 relative">
-                                    <input id="email" name="email" type="email" autocomplete="email" required 
-                                           class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white" 
-                                           placeholder="Enter your email address">
-                                    <div class="invalid-feedback text-red-400 text-sm mt-1 hidden"></div>
-                                </div>
-                            </div>
-                            <div class="sm:col-span-2">
-                                <label for="subject" class="block text-sm font-medium text-slate-300">Subject</label>
-                                <div class="mt-1 relative">
-                                    <input type="text" name="subject" id="subject" 
-                                           class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white" 
-                                           placeholder="What's this about?">
-                                    <div class="invalid-feedback text-red-400 text-sm mt-1 hidden"></div>
-                                </div>
-                            </div>
-                            <div class="sm:col-span-2">
-                                <label for="message" class="block text-sm font-medium text-slate-300">Message *</label>
-                                <div class="mt-1 relative">
-                                    <textarea id="message" name="message" rows="4" required 
-                                              class="form-input py-3 px-4 block w-full shadow-sm rounded-md text-white resize-none" 
-                                              placeholder="Tell me about your project or just say hello..."></textarea>
-                                    <div class="invalid-feedback text-red-400 text-sm mt-1 hidden"></div>
-                                </div>
-                            </div>
+                <div class="mt-12 max-w-6xl mx-auto">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                        <!-- Programming Languages -->
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🐍</div>
+                            <h3 class="text-white font-semibold">Python</h3>
+                            <p class="text-slate-400 text-sm mt-1">Advanced</p>
                         </div>
-                        <div class="mt-6">
-                            <button type="submit" id="submit-btn" class="btn-primary w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
-                                <span class="submit-text">Send Message</span>
-                                <svg class="submit-icon ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                                </svg>
-                                <div class="loading-spinner hidden ml-2">
-                                    <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                                </div>
-                            </button>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">☕</div>
+                            <h3 class="text-white font-semibold">Java</h3>
+                            <p class="text-slate-400 text-sm mt-1">Intermediate</p>
                         </div>
-                        <p class="mt-3 text-sm text-slate-400 text-center">* Required fields</p>
-                    </form>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🌐</div>
+                            <h3 class="text-white font-semibold">JavaScript</h3>
+                            <p class="text-slate-400 text-sm mt-1">Advanced</p>
+                        </div>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🔷</div>
+                            <h3 class="text-white font-semibold">TypeScript</h3>
+                            <p class="text-slate-400 text-sm mt-1">Intermediate</p>
+                        </div>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">💾</div>
+                            <h3 class="text-white font-semibold">SQL</h3>
+                            <p class="text-slate-400 text-sm mt-1">Intermediate</p>
+                        </div>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">⚛️</div>
+                            <h3 class="text-white font-semibold">React</h3>
+                            <p class="text-slate-400 text-sm mt-1">Advanced</p>
+                        </div>
+                        
+                        <!-- Frameworks & Libraries -->
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🔥</div>
+                            <h3 class="text-white font-semibold">Django</h3>
+                            <p class="text-slate-400 text-sm mt-1">Advanced</p>
+                        </div>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🟢</div>
+                            <h3 class="text-white font-semibold">Node.js</h3>
+                            <p class="text-slate-400 text-sm mt-1">Intermediate</p>
+                        </div>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🎨</div>
+                            <h3 class="text-white font-semibold">Tailwind CSS</h3>
+                            <p class="text-slate-400 text-sm mt-1">Advanced</p>
+                        </div>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🧠</div>
+                            <h3 class="text-white font-semibold">TensorFlow</h3>
+                            <p class="text-slate-400 text-sm mt-1">Intermediate</p>
+                        </div>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🔥</div>
+                            <h3 class="text-white font-semibold">PyTorch</h3>
+                            <p class="text-slate-400 text-sm mt-1">Beginner</p>
+                        </div>
+                        <div class="tech-item bg-gray-900/50 p-6 rounded-lg text-center hover:bg-gray-800/50 transition-all duration-300 group">
+                            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🔧</div>
+                            <h3 class="text-white font-semibold">Git</h3>
+                            <p class="text-slate-400 text-sm mt-1">Advanced</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Learning & Goals -->
+                    <div class="mt-12 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-4">Currently Learning</h3>
+                        <div class="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
+                            <span class="px-4 py-2 bg-indigo-600/20 text-indigo-400 rounded-full text-sm font-medium">Next.js</span>
+                            <span class="px-4 py-2 bg-indigo-600/20 text-indigo-400 rounded-full text-sm font-medium">Docker</span>
+                            <span class="px-4 py-2 bg-indigo-600/20 text-indigo-400 rounded-full text-sm font-medium">Kubernetes</span>
+                            <span class="px-4 py-2 bg-indigo-600/20 text-indigo-400 rounded-full text-sm font-medium">AWS</span>
+                            <span class="px-4 py-2 bg-indigo-600/20 text-indigo-400 rounded-full text-sm font-medium">GraphQL</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1057,106 +1073,6 @@
                 toast.classList.remove('show');
             }, 3000);
         }
-
-        // --- Form Validation and Submission ---
-        const contactForm = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const submitText = document.querySelector('.submit-text');
-        const submitIcon = document.querySelector('.submit-icon');
-        const loadingSpinner = document.querySelector('.loading-spinner');
-
-        function validateField(field) {
-            const value = field.value.trim();
-            const feedback = field.parentNode.querySelector('.invalid-feedback');
-            
-            let isValid = true;
-            let message = '';
-
-            if (field.hasAttribute('required') && !value) {
-                isValid = false;
-                message = 'This field is required.';
-            } else if (field.type === 'email' && value && !isValidEmail(value)) {
-                isValid = false;
-                message = 'Please enter a valid email address.';
-            }
-
-            if (isValid) {
-                field.classList.remove('border-red-500');
-                field.classList.add('border-green-500');
-                feedback.classList.add('hidden');
-            } else {
-                field.classList.remove('border-green-500');
-                field.classList.add('border-red-500');
-                feedback.textContent = message;
-                feedback.classList.remove('hidden');
-            }
-
-            return isValid;
-        }
-
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        // Real-time validation
-        const formFields = contactForm.querySelectorAll('input, textarea');
-        formFields.forEach(field => {
-            field.addEventListener('blur', () => validateField(field));
-            field.addEventListener('input', () => {
-                if (field.classList.contains('border-red-500')) {
-                    validateField(field);
-                }
-            });
-        });
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Validate all fields
-            let isFormValid = true;
-            formFields.forEach(field => {
-                if (!validateField(field)) {
-                    isFormValid = false;
-                }
-            });
-
-            if (!isFormValid) {
-                showToast('Please fix the errors above.', 'error');
-                return;
-            }
-
-            // Show loading state
-            submitBtn.disabled = true;
-            submitText.textContent = 'Sending...';
-            submitIcon.classList.add('hidden');
-            loadingSpinner.classList.remove('hidden');
-
-            try {
-                // Simulate form submission (replace with actual form submission logic)
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // Success
-                showToast('Message sent successfully! I\'ll get back to you soon.');
-                contactForm.reset();
-                
-                // Remove validation classes
-                formFields.forEach(field => {
-                    field.classList.remove('border-green-500', 'border-red-500');
-                    const feedback = field.parentNode.querySelector('.invalid-feedback');
-                    feedback.classList.add('hidden');
-                });
-                
-            } catch (error) {
-                showToast('Failed to send message. Please try again.', 'error');
-            } finally {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitText.textContent = 'Send Message';
-                submitIcon.classList.remove('hidden');
-                loadingSpinner.classList.add('hidden');
-            }
-        });
 
         // --- Typing Effect ---
         const words = ["AI & Machine Learning Enthusiast", "Full-Stack Developer", "Creative Problem Solver", "Tech Innovator"];

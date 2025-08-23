@@ -6,7 +6,7 @@ A modern, responsive portfolio website showcasing projects, skills, and certific
 
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **AI-Powered Project Ideas**: Generate project suggestions using Google Gemini AI
-- **Interactive Contact Form**: With validation and EmailJS integration
+- **Technologies Showcase**: Interactive display of technical skills and tools
 - **Animated Background**: Canvas-based particle animation
 - **Smooth Scrolling**: Enhanced navigation experience
 - **Accessibility**: Screen reader friendly with ARIA labels
@@ -20,9 +20,6 @@ A modern, responsive portfolio website showcasing projects, skills, and certific
 ### GitHub Deployment
 1. **Configure GitHub Secrets** (Settings → Secrets and variables → Actions):
    - `GEMINI_API_KEY` - Google Gemini AI API key
-   - `EMAILJS_SERVICE_ID` - EmailJS service ID
-   - `EMAILJS_TEMPLATE_ID` - EmailJS template ID
-   - `EMAILJS_PUBLIC_KEY` - EmailJS public key
 
 2. **Enable GitHub Pages**:
    - Go to Settings → Pages
@@ -40,10 +37,6 @@ A modern, responsive portfolio website showcasing projects, skills, and certific
 ### Google Gemini AI
 - Get from: [Google AI Studio](https://aistudio.google.com/)
 - Add as `GEMINI_API_KEY` in GitHub Secrets
-
-### EmailJS
-- Setup at: [EmailJS](https://www.emailjs.com/)
-- Add Service ID, Template ID, and Public Key to GitHub Secrets
 
 ## 📁 File Structure
 

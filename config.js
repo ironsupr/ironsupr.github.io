@@ -23,11 +23,6 @@ class EnvironmentConfig {
             GEMINI_MODEL: 'gemini-2.5-flash-preview-05-20',
             GEMINI_API_BASE_URL: 'https://generativelanguage.googleapis.com/v1beta/models',
             
-            // Email configuration
-            EMAILJS_SERVICE_ID: '',
-            EMAILJS_TEMPLATE_ID: '',
-            EMAILJS_PUBLIC_KEY: '',
-            
             // Contact information
             CONTACT_EMAIL: 'abhinavsingh25001@gmail.com',
             LINKEDIN_URL: 'https://www.linkedin.com/in/abhinav-singh-aslcj3000',
@@ -113,17 +108,13 @@ class EnvironmentConfig {
     // Check if configuration is complete
     isConfigured() {
         const geminiKey = this.get('GEMINI_API_KEY');
-        const emailServiceId = this.get('EMAILJS_SERVICE_ID');
-        return geminiKey && geminiKey !== '' && emailServiceId && emailServiceId !== '';
+        return geminiKey && geminiKey !== '';
     }
 
     // Get missing configuration items
     getMissingConfig() {
         const missing = [];
         if (!this.get('GEMINI_API_KEY') || this.get('GEMINI_API_KEY') === '') missing.push('Gemini API Key');
-        if (!this.get('EMAILJS_SERVICE_ID') || this.get('EMAILJS_SERVICE_ID') === '') missing.push('EmailJS Service ID');
-        if (!this.get('EMAILJS_TEMPLATE_ID') || this.get('EMAILJS_TEMPLATE_ID') === '') missing.push('EmailJS Template ID');
-        if (!this.get('EMAILJS_PUBLIC_KEY') || this.get('EMAILJS_PUBLIC_KEY') === '') missing.push('EmailJS Public Key');
         return missing;
     }
 
@@ -152,8 +143,7 @@ if (typeof window !== 'undefined') {
             missing: envConfig.getMissingConfig(),
             hostname: window.location.hostname,
             environment: envConfig.get('NODE_ENV'),
-            hasGeminiKey: !!envConfig.get('GEMINI_API_KEY'),
-            hasEmailJSConfig: !!envConfig.get('EMAILJS_SERVICE_ID')
+            hasGeminiKey: !!envConfig.get('GEMINI_API_KEY')
         });
         
         // Show configuration help if needed
