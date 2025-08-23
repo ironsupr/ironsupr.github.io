@@ -28,81 +28,53 @@ jobs:
       with:
         node-version: '18'
         
-    - name: Create environment configuration
+    - name: Inject production secrets into config.js
       run: |
-        # Create a production config file with environment variables
-        cat > config.prod.js << 'EOF'
-        // Production Environment Configuration
-        // This file is generated during build with GitHub Secrets
+        # Create a temporary script to safely replace the config values
+        cat > inject_config.js << 'EOF'
+        const fs = require('fs');
         
-        class EnvironmentConfig {
-            constructor() {
-                this.config = {};
-                this.loadConfig();
-            }
-
-            loadConfig() {
-                // Production configuration loaded from GitHub Secrets
-                this.config = {
-                    GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}',
-                    GEMINI_MODEL: '${{ vars.GEMINI_MODEL || 'gemini-2.5-flash-preview-05-20' }}',
-                    GEMINI_API_BASE_URL: '${{ vars.GEMINI_API_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta/models' }}',
-                    
-                    // Email configuration
-                    EMAILJS_SERVICE_ID: '${{ secrets.EMAILJS_SERVICE_ID }}',
-                    EMAILJS_TEMPLATE_ID: '${{ secrets.EMAILJS_TEMPLATE_ID }}',
-                    EMAILJS_PUBLIC_KEY: '${{ secrets.EMAILJS_PUBLIC_KEY }}',
-                    
-                    // Contact information
-                    CONTACT_EMAIL: '${{ vars.CONTACT_EMAIL || 'abhinavsingh25001@gmail.com' }}',
-                    LINKEDIN_URL: '${{ vars.LINKEDIN_URL || 'https://www.linkedin.com/in/abhinav-singh-aslcj3000' }}',
-                    GITHUB_URL: '${{ vars.GITHUB_URL || 'https://github.com/ironsupr' }}',
-                    
-                    // Production settings
-                    NODE_ENV: 'production',
-                    DEBUG: false
-                };
-            }
-
-            get(key) {
-                return this.config[key];
-            }
-
-            getGeminiApiUrl() {
-                const baseUrl = this.get('GEMINI_API_BASE_URL');
-                const model = this.get('GEMINI_MODEL');
-                const apiKey = this.get('GEMINI_API_KEY');
-                
-                return `${baseUrl}/${model}:generateContent?key=${apiKey}`;
-            }
-
-            isProduction() {
-                return this.get('NODE_ENV') === 'production';
-            }
-
-            isDebugMode() {
-                return this.get('DEBUG');
-            }
-        }
-
-        // Export for use in other files
-        const envConfig = new EnvironmentConfig();
-
-        // For browser environments
-        if (typeof window !== 'undefined') {
-            window.envConfig = envConfig;
-        }
+        // Read the config file
+        let configContent = fs.readFileSync('config.js', 'utf8');
+        
+        // Replace the empty values with actual secrets
+        configContent = configContent.replace(/GEMINI_API_KEY: '',/, `GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}',`);
+        configContent = configContent.replace(/EMAILJS_SERVICE_ID: '',/, `EMAILJS_SERVICE_ID: '${{ secrets.EMAILJS_SERVICE_ID }}',`);
+        configContent = configContent.replace(/EMAILJS_TEMPLATE_ID: '',/, `EMAILJS_TEMPLATE_ID: '${{ secrets.EMAILJS_TEMPLATE_ID }}',`);
+        configContent = configContent.replace(/EMAILJS_PUBLIC_KEY: '',/, `EMAILJS_PUBLIC_KEY: '${{ secrets.EMAILJS_PUBLIC_KEY }}',`);
+        
+        // Set production environment
+        configContent = configContent.replace(/NODE_ENV: 'development',/, `NODE_ENV: 'production',`);
+        configContent = configContent.replace(/DEBUG: true/, `DEBUG: false`);
+        
+        // Write the updated config back
+        fs.writeFileSync('config.js', configContent);
+        
+        console.log('✅ Configuration updated for production');
         EOF
         
-    - name: Replace config.js with production version
-      run: |
-        cp config.prod.js config.js
-        rm config.prod.js
+        # Run the injection script
+        node inject_config.js
+        rm inject_config.js
         
-    - name: Update HTML to use production config
+    - name: Verify configuration injection
       run: |
-        # Remove development-specific scripts and comments
-        sed -i 's/<!-- Environment Configuration -->/<!-- Production Environment Configuration -->/' index.html
+        echo "Checking if secrets were properly injected..."
+        
+        # Check if the config contains the actual secrets (not empty)
+        if grep -q "GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}'" config.js; then
+          echo "✅ GEMINI_API_KEY injected successfully"
+        else
+          echo "❌ GEMINI_API_KEY injection failed"
+          echo "Current GEMINI_API_KEY line:"
+          grep "GEMINI_API_KEY:" config.js || echo "Line not found"
+        fi
+        
+        if grep -q "NODE_ENV: 'production'" config.js; then
+          echo "✅ Production environment set"
+        else
+          echo "❌ Production environment not set"
+        fi
         
     - name: Setup Pages
       uses: actions/configure-pages@v4

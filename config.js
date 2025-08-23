@@ -112,15 +112,18 @@ class EnvironmentConfig {
 
     // Check if configuration is complete
     isConfigured() {
-        const apiKey = this.get('GEMINI_API_KEY');
-        return apiKey && apiKey !== '';
+        const geminiKey = this.get('GEMINI_API_KEY');
+        const emailServiceId = this.get('EMAILJS_SERVICE_ID');
+        return geminiKey && geminiKey !== '' && emailServiceId && emailServiceId !== '';
     }
 
     // Get missing configuration items
     getMissingConfig() {
         const missing = [];
-        if (!this.get('GEMINI_API_KEY')) missing.push('Gemini API Key');
-        if (!this.get('EMAILJS_SERVICE_ID')) missing.push('EmailJS Service ID');
+        if (!this.get('GEMINI_API_KEY') || this.get('GEMINI_API_KEY') === '') missing.push('Gemini API Key');
+        if (!this.get('EMAILJS_SERVICE_ID') || this.get('EMAILJS_SERVICE_ID') === '') missing.push('EmailJS Service ID');
+        if (!this.get('EMAILJS_TEMPLATE_ID') || this.get('EMAILJS_TEMPLATE_ID') === '') missing.push('EmailJS Template ID');
+        if (!this.get('EMAILJS_PUBLIC_KEY') || this.get('EMAILJS_PUBLIC_KEY') === '') missing.push('EmailJS Public Key');
         return missing;
     }
 
@@ -148,11 +151,22 @@ if (typeof window !== 'undefined') {
             isConfigured: envConfig.isConfigured(),
             missing: envConfig.getMissingConfig(),
             hostname: window.location.hostname,
-            environment: envConfig.get('NODE_ENV')
+            environment: envConfig.get('NODE_ENV'),
+            hasGeminiKey: !!envConfig.get('GEMINI_API_KEY'),
+            hasEmailJSConfig: !!envConfig.get('EMAILJS_SERVICE_ID')
         });
         
         // Show configuration help if needed
         envConfig.showConfigHelp();
+    }
+    
+    // Always log configuration status in production for debugging
+    if (envConfig.isProduction()) {
+        console.log('🚀 Production Environment:', {
+            isConfigured: envConfig.isConfigured(),
+            missing: envConfig.getMissingConfig(),
+            hostname: window.location.hostname
+        });
     }
 }
 
