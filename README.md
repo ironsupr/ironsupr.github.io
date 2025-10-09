@@ -55,7 +55,7 @@ Cybersecurity toolkit for network analysis and penetration testing.
 
 - **Portfolio**: [ironsupr.github.io/Portfolio](https://ironsupr.github.io/Portfolio)
 - **GitHub**: [@ironsupr](https://github.com/ironsupr)
-- **LinkedIn**: [Connect with me](https://linkedin.com/in/abhinav-singh)
+- **LinkedIn**: [Connect with me](https://linkedin.com/in/abhinav-singh-aslcj3000)
 
 ## 📊 GitHub Stats
 
